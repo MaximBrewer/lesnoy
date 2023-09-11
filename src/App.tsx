@@ -47,7 +47,7 @@ const results = [
   `Мы считаем, это успех`
 ]
 
-const timing = 30
+const timing = 3
 
 
 const StartBubble = () => {
@@ -179,8 +179,8 @@ const App: React.FC = () => {
         />
         <div className="bg-cover bg-center bg-no-repeat w-[133px] lg:w-[208px] h-[346px] lg:h-[547px] left-[26px] lg:left-[428px] top-[118px] lg:top-[185px] absolute" style={{ backgroundImage: `url('${Tube2}')` }}></div>
       </> : <>
-        <div className="bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${Tube}')` }}></div>
-        <div className="bottom-5 lg:right-8 lg:bottom-8 absolute bg-white rounded-xl p-5 lg:p-8 w-[303px] lg:w-[389px] left-1/2 -translate-x-1/2">
+        <div className="bg-cover bg-center bg-no-repeat w-[133px] lg:w-[217px] h-[346px] lg:h-[616px] left-[26px] lg:left-[428px] top-[118px] lg:top-[116px] absolute hidden lg:block" style={{ backgroundImage: `url('${Tube}')` }}></div>
+        <div className="bottom-5 lg:right-8 lg:bottom-8 absolute bg-white rounded-xl p-5 lg:p-8 w-[303px] lg:w-[389px] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto">
           <div className="text-3xl lg:text-[45px] font-medium mb-1 lg:mb-3 leading-none">{
             count < 20 ? results[4] : (count < 30 ? results[3] : (count < 40 ? results[2] : (count < 50 ? results[1] : results[0])))
           }</div>
