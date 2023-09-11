@@ -27,11 +27,11 @@ module.exports = {
           '75%': { transform: 'translateX(549px)' },
         },
         paste: {
-          '0%': { transform: 'scale(0) translateX(0)', opacity: 1 },
-          '50%': { transform: 'scale(1)' },
+          '0%': { transform: 'scale(0.1) translateX(0)', opacity: 1 },
+          '50%': { transform: 'scale(1)', opacity: 1 },
           '75%': { transform: 'translateX(549px)', opacity: 1 },
           '76%': { opacity: 0 },
-          '100%': { transform: 'scale(0) translateX(0)', opacity: 0 },
+          '100%': { transform: 'scale(0.1) translateX(0)', opacity: 0 },
         },
         bubble: {
           '0%': { transform: 'scale(1.1)' },

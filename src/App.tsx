@@ -1,12 +1,13 @@
-import BackGround from "./img/bg.png"
-import Tube from "./img/tube.png"
-import Tube2 from "./img/tube2.png"
+import BackGround from "./img/bg.webp"
+import MBackGround from "./img/mbg.webp"
+import Tube from "./img/tube.webp"
+import Dosator from "./img/dosator.webp"
+import Family from "./img/family.webp"
 import GreenBrush from "./img/green.png"
-import Family from "./img/family.png"
 import BlueBrush from "./img/blue.png"
 import YellowBrush from "./img/yellow.png"
-import Tail from "./img/tail.png"
 import PinkBrush from "./img/pink.png"
+import Tail from "./img/tail.png"
 import Hand from "./img/hand.png"
 import Paste from "./img/paste.png"
 
@@ -23,22 +24,24 @@ const numWord = (value: number, words: Array<string>) => {
   return words[2];
 }
 
+const timing = 30
+
 const phrases = [
   `Отлично получается`,
   `Так держать!`,
   `Неплохо`,
   `Какая скорость!`,
-  `Еще немного`,
-  `А если еще быстрее?`,
+  `Ещё немного`,
+  `А если ещё быстрее?`,
   `Фух, даже жарко стало…`,
   `Какое упорство!`,
   `Честно, мы поражены`,
   `Осталось совсем чуть-чуть`,
   `Финишная прямая!`,
-  `Кажется, кто-то идет на рекорд`,
+  `Кажется, кто-то идёт на рекорд`,
   `Очень хорошо!`,
   `У вас точно талант`,
-  `Такого мы еще не видели`
+  `Такого мы ещё не видели`
 ]
 
 const results = [
@@ -48,8 +51,6 @@ const results = [
   `Ваш новый рекорд`,
   `Мы считаем, это успех`
 ]
-
-const timing = 30
 
 
 const StartBubble = () => {
@@ -172,36 +173,32 @@ const App: React.FC = () => {
   }, [count])
 
 
-  useEffect(() => {
-    [Tube, Family, BackGround, Tube2, GreenBrush, Family, BlueBrush, YellowBrush, Tail, PinkBrush, Hand, Paste].forEach((picture) => {
-      const img = new Image();
-      img.src = picture;
-    });
-  }, [])
 
   return (
-    <div className="w-[342px] select-none lg:w-[1164px] h-[489px] lg:h-[764px] bg-cover bg-center bg-no-repeat relative overflow-hidden" style={{ backgroundImage: `url('${BackGround}')` }}>
+    <div className="w-[342px] select-none lg:w-[1164px] h-[489px] lg:h-[764px] relative overflow-hidden">
+      <div className="absolute top-0 left-0 bottom-0 right-0 bg-cover bg-center bg-no-repeat hidden lg:block" style={{ backgroundImage: `url('${BackGround}')` }}></div>
+      <div className="absolute top-0 left-0 bottom-0 right-0 bg-cover bg-center bg-no-repeat lg:hidden" style={{ backgroundImage: `url('${MBackGround}')` }}></div>
+      <div className="bg-contain bg-center bg-no-repeat w-[150px] h-[348px] left-[18px] top-[118px] lg:w-[225px] lg:h-[536px] lg:left-[421px] lg:top-[188px] absolute z-10" style={{ backgroundImage: `url('${Tube}')` }}></div>
       {!started || timer ? <>
         <div
-          className={`bg-cover bg-center bg-no-repeat w-[163px] lg:w-[260px] h-[140px] lg:h-[223px] left-0 lg:left-[384px] transition -top-[21px] lg:-top-8 absolute ${classes.hand}`}
+          className={`bg-contain bg-center bg-no-repeat w-[163px] lg:w-[260px] h-[140px] lg:h-[223px] left-0 lg:left-[384px] transition -top-[21px] lg:-top-8 absolute ${classes.hand}`}
           style={{ backgroundImage: `url('${Hand}')` }}
           onClick={click}
         />
-        <div className="bg-cover bg-center bg-no-repeat w-[133px] lg:w-[208px] h-[346px] lg:h-[547px] left-[26px] lg:left-[428px] top-[118px] lg:top-[185px] absolute" style={{ backgroundImage: `url('${Tube2}')` }}></div>
       </> : <>
-        <div className="bg-cover bg-center bg-no-repeat w-[133px] lg:w-[217px] h-[346px] lg:h-[616px] left-[26px] lg:left-[428px] top-[118px] lg:top-[116px] absolute hidden lg:block" style={{ backgroundImage: `url('${Tube}')` }}></div>
-        <div className="bottom-5 lg:right-8 lg:bottom-8 absolute bg-white rounded-xl p-5 lg:p-8 w-[303px] lg:w-[389px] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto">
+        <div className="bg-contain bg-center bg-no-repeat w-[133px] lg:w-[238px] h-[346px] lg:h-[95px] left-[26px] lg:left-[412px] top-[110px] lg:top-[115px] absolute" style={{ backgroundImage: `url('${Dosator}')` }}></div>
+        <div className="bottom-5 lg:right-8 lg:bottom-8 absolute bg-white rounded-xl p-5 lg:p-8 w-[303px] lg:w-[389px] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto z-20">
           <div className="text-3xl lg:text-[45px] font-medium mb-1 lg:mb-3 leading-none">{
             count < 20 ? results[4] : (count < 30 ? results[3] : (count < 40 ? results[2] : (count < 50 ? results[1] : results[0])))
           }</div>
           <div className="text-emerald-950 text-[22px] lg:text-3xl font-medium mb-1 lg:mb-4">{count} {numWord(count, ['нажатие', 'нажатия', 'нажатий'])}</div>
           <img className="mb-4 block w-full" src={Family} />
-          <div className="text-emerald-950 text-[22px] lg:text-3xl font-medium leading-none">«Лесной бальзам» удивляет объемом: 400 нажатий для всей семьи!</div>
+          <div className="text-emerald-950 text-[22px] lg:text-3xl font-medium leading-none">«Лесной бальзам» удивляет объёмом: 400 нажатий для всей семьи!</div>
         </div>
       </>}
       {timer ? <>
-        <div className={`bg-cover bg-center bg-no-repeat w-[321px] lg:w-[542px] h-[36px] lg:h-[62px] -right-[128px] lg:right-0 top-[129px] lg:top-[201px] absolute ${classes.brush}`} style={{ backgroundImage: `url('${brushes[brushIndex]}')` }}></div>
-        <div className={`bg-cover bg-center bg-no-repeat w-[46px] lg:w-[82px] h-[19px] lg:h-[33px] right-[137px] lg:right-[454px] top-[115px] lg:top-[175px] absolute ${classes.paste}`} style={{ backgroundImage: `url('${Paste}')` }}></div>
+        <div className={`bg-contain bg-center bg-no-repeat w-[321px] lg:w-[542px] h-[36px] lg:h-[62px] -right-[128px] lg:right-0 top-[129px] lg:top-[201px] absolute ${classes.brush}`} style={{ backgroundImage: `url('${brushes[brushIndex]}')` }}></div>
+        <div className={`bg-contain bg-left bg-no-repeat w-[46px] lg:w-[82px] h-[19px] lg:h-[33px] right-[137px] lg:right-[454px] top-[115px] lg:top-[175px] absolute ${classes.paste}`} style={{ backgroundImage: `url('${Paste}')` }}></div>
       </> : ``}
       <div className={`p-2 lg:p-4 ${started ? `bg-emerald-950` : `bg-green-700`} rounded-lg lg:rounded-xl absolute right-4 lg:right-8 top-4 lg:top-8`}>
         <div className={`text-white text-[25px] lg:text-[45px] font-medium leading-none  ${started ? `${timer ? `` : `opacity-50`}` : ``}`}>00:{started ? (timer >= 10 ? timer : `0${timer}`) : timing >= 10 ? timing : `0${timing}`}</div>
@@ -215,6 +212,9 @@ const App: React.FC = () => {
         </Fragment>)}
       </div> : ``}
       <div className="h-px w-px absolute top-full left-1/2" ref={ref}></div>
+      <div className="h-px w-px opacity-10">
+        {[Tube, Family, BackGround, Dosator, GreenBrush, Family, BlueBrush, YellowBrush, Tail, PinkBrush, Hand, Paste].map((picture, pdx) => <img key={pdx} src={picture} />)}
+      </div>
     </div>
   );
 };
