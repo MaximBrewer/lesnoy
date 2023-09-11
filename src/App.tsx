@@ -9,6 +9,8 @@ import Tail from "./img/tail.png"
 import PinkBrush from "./img/pink.png"
 import Hand from "./img/hand.png"
 import Paste from "./img/paste.png"
+
+
 import { Fragment, useEffect, useState } from "react"
 import { useInView } from 'react-intersection-observer';
 
@@ -47,7 +49,7 @@ const results = [
   `Мы считаем, это успех`
 ]
 
-const timing = 3
+const timing = 30
 
 
 const StartBubble = () => {
@@ -71,7 +73,7 @@ const Bubble = ({ text, index }: BubbleProps) => {
 
   const opacity = index == 1 ? `` : (index == 2 ? `opacity-70` : `opacity-50`)
 
-  return <div className={`relative pl-[.375rem] pl-2.5 flex items-stretch flex-col max-w-[141px] lg:max-w-[320px] ${opacity}`}>
+  return <div className={`relative pl-[.375rem] pl-2.5 flex items-stretch flex-col max-w-[141px] lg:max-w-[320px] ${opacity} ${index === 1 ? `animate-bubble` : ``}`}>
     <img src={Tail} className="absolute bottom-0 left-0 w-10 lg:w-16 h-auto" />
     <div className="rounded-full bg-white lg:text-2xl font-medium py-[12px] lg:py-[35px] px-4 lg:px-8 relative leading-none">{text}</div>
   </div>
@@ -120,7 +122,7 @@ const App: React.FC = () => {
       ...prev,
       hand: ``,
       brush: ``,
-      paste: ``
+      paste: `scale-0`
     }))
 
     setTimeout(() => {
@@ -128,7 +130,7 @@ const App: React.FC = () => {
         ...prev,
         hand: `animate-mpush lg:animate-push`,
         brush: `animate-mbrush lg:animate-brush`,
-        paste: `animate-mbrush lg:animate-brush block`
+        paste: `animate-paste`
       }))
     }, 10)
 
@@ -136,7 +138,7 @@ const App: React.FC = () => {
       setBrushIndex(prev => prev < 3 ? ++prev : 0)
       setClasses(prev => ({
         ...prev,
-        paste: `animate-mbrush lg:animate-brush hidden`
+        paste: `animate-paste`
       }))
     }, 150)
   }
@@ -162,12 +164,20 @@ const App: React.FC = () => {
       if (!(count % 4)) {
         setBubbles(prev => {
           let bubbles = [...prev]
-          phrases.length - 1 >= bubbles.length && bubbles.push(phrases[bubbles.length])
+          bubbles.push(phrases[bubbles.length % phrases.length])
           return bubbles
         })
       }
     }
   }, [count])
+
+
+  useEffect(() => {
+    [Tube, Family, BackGround, Tube2, GreenBrush, Family, BlueBrush, YellowBrush, Tail, PinkBrush, Hand, Paste].forEach((picture) => {
+      const img = new Image();
+      img.src = picture;
+    });
+  }, [])
 
   return (
     <div className="w-[342px] select-none lg:w-[1164px] h-[489px] lg:h-[764px] bg-cover bg-center bg-no-repeat relative overflow-hidden" style={{ backgroundImage: `url('${BackGround}')` }}>
