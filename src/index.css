@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@font-face {
+    font-family: 'YS-Text';
+    src: url('./fonts/YS-Text-Medium.woff2') format('woff2'),
+        url('./fonts/YS-Text-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}

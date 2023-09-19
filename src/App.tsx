@@ -61,7 +61,7 @@ const StartBubble = () => {
     <svg className="hidden lg:block" width="379" height="198" viewBox="0 0 379 198" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fillRule="evenodd" clipRule="evenodd" d="M41 198C24.4315 198 11 184.569 11 168V30C11 29.2823 11.0252 28.5705 11.0748 27.8654C10.3175 21.7256 8.15299 15.5536 2.59942 10C-4.20824 3.19232 0.530343 0.499512 39.0161 0.0645447C39.6719 0.0217285 40.3334 0 41 0H51.2347C51.3765 -4.57764e-05 51.5187 -6.10352e-05 51.6612 -6.10352e-05C51.6822 -6.10352e-05 51.7032 -4.57764e-05 51.7242 0H349C365.569 0 379 13.4315 379 30V168C379 184.569 365.569 198 349 198H41Z" fill="white" />
     </svg>
-    <div className="w-[124px] lg:w-[327px] left-[20px] top-[16px] lg:left-[40px] lg:top-[32px] absolute text-emerald-950 text-[22px] lg:text-[45px] font-medium leading-none">Нажмите на дозатор, чтобы выдавить пасту</div>
+    <div className="w-[124px] lg:w-[327px] left-[20px] top-[16px] lg:left-[40px] lg:top-[32px] absolute text-emerald-950 text-[20px] lg:text-[40px] font-medium leading-none">Нажмите на дозатор, чтобы выдавить пасту</div>
   </div>
 }
 
@@ -97,7 +97,7 @@ const App: React.FC = () => {
     paste: `hidden`
   });
 
-  const [b1, setB1] = useState<boolean>(false);
+  const [b1, setB1] = useState<boolean>(true);
 
   const [bubbles, setBubbles] = useState<Array<string>>([]);
 
@@ -123,7 +123,7 @@ const App: React.FC = () => {
       ...prev,
       hand: ``,
       brush: ``,
-      paste: `scale-0`
+      paste: `scale-[0.1] opacity-0`
     }))
 
     setTimeout(() => {
@@ -133,15 +133,11 @@ const App: React.FC = () => {
         brush: `animate-mbrush lg:animate-brush`,
         paste: `animate-paste`
       }))
-    }, 10)
+    }, 50)
 
     setTimeout(() => {
       setBrushIndex(prev => prev < 3 ? ++prev : 0)
-      setClasses(prev => ({
-        ...prev,
-        paste: `animate-paste`
-      }))
-    }, 150)
+    }, 375)
   }
 
   useEffect(() => {
@@ -175,7 +171,7 @@ const App: React.FC = () => {
 
 
   return (
-    <div className="w-[342px] select-none lg:w-[1164px] h-[489px] lg:h-[764px] relative overflow-hidden">
+    <div className="w-[342px] select-none lg:w-[1164px] h-[489px] lg:h-[764px] relative overflow-hidden origin-top-left rounded-xl">
       <div className="absolute top-0 left-0 bottom-0 right-0 bg-cover bg-center bg-no-repeat hidden lg:block" style={{ backgroundImage: `url('${BackGround}')` }}></div>
       <div className="absolute top-0 left-0 bottom-0 right-0 bg-cover bg-center bg-no-repeat lg:hidden" style={{ backgroundImage: `url('${MBackGround}')` }}></div>
       <div className="bg-contain bg-center bg-no-repeat w-[150px] h-[348px] left-[18px] top-[118px] lg:w-[225px] lg:h-[536px] lg:left-[421px] lg:top-[188px] absolute z-10" style={{ backgroundImage: `url('${Tube}')` }}></div>
